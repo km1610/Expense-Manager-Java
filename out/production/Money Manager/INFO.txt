@@ -1,0 +1,7 @@
+class moneymanager - GUI
+text file - debit
+text file - credit
+text file - amount
+text file - name
+text file - account balance
+text file - date & time
