@@ -19,14 +19,15 @@ public class moneymanager{
             Statement code = con.createStatement();
 
             try {
-                code.execute("CREATE TABLE ACCOUNT(NAME VARCHAR(20) PRIMARY KEY,DEBIT NUMERIC(65,3), CREDIT NUMERIC(65,3),TOTAL NUMERIC(65,3), ACCOUNT_BALANCE NUMERIC(65,3))");
-                code.execute("CREATE TABLE DEBIT(AMOUNT NUMERIC(65,3), DATE_OF_TRANSACTION DATE, CATEGORY VARCHAR(25), NOTE VARCHAR(200))");
-                code.execute("CREATE TABLE CREDIT(AMOUNT NUMERIC(65,3), DATE_OF_TRANSACTION DATE, CATEGORY VARCHAR(25), NOTE VARCHAR(200))");
-                code.execute("CREATE TABLE TRANSFER(AMOUNT NUMERIC(65,3), DATE_OF_TRANSACTION DATE, CATEGORY VARCHAR(25), NOTE VARCHAR(200))");
-                code.execute("CREATE TABLE STATEMENTS(DATE_OF_TRANSACTION DATE, AMOUNT NUMBERIC(65,3), TYPE_OF_TRANSACTION VARCHAR(11), CATEGORY VARCHAR(25), NOTE VARCHAAR(200)");
-                code.execute("INSERT INTO ACCOUNT VALUES('Kshiti',0,0,0,0)");
+                code.execute("CREATE TABLE ACCOUNT(NAME VARCHAR(20) PRIMARY KEY,DEBIT NUMERIC(65,3), CREDIT NUMERIC(65,3),TOTAL NUMERIC(65,3), ACCOUNT_BALANCE NUMERIC(65,3));");
+                code.execute("CREATE TABLE DEBIT(AMOUNT NUMERIC(65,3), DATE_OF_TRANSACTION DATE, CATEGORY VARCHAR(25), NOTE VARCHAR(200));");
+                code.execute("CREATE TABLE CREDIT(AMOUNT NUMERIC(65,3), DATE_OF_TRANSACTION DATE, CATEGORY VARCHAR(25), NOTE VARCHAR(200));");
+                code.execute("CREATE TABLE TRANSFER(AMOUNT NUMERIC(65,3), DATE_OF_TRANSACTION DATE, CATEGORY VARCHAR(25), NOTE VARCHAR(200));");
+                code.execute("CREATE TABLE STATEMENTS(DATE_OF_TRANSACTION DATE, AMOUNT NUMERIC(65,3), TYPE_OF_TRANSACTION VARCHAR(11), CATEGORY VARCHAR(25), NOTE VARCHAR(200));");
+                code.execute("INSERT INTO ACCOUNT VALUES('Kshiti',0,0,0,0);");
             }catch (SQLException e){
-                JOptionPane.showMessageDialog(null,"Error Occurred. Try Again");
+//                JOptionPane.showMessageDialog(null,"");
+                System.out.println(e);
             }
             //code.execute("UPDATE ACCOUNT SET DEBIT=0 WHERE NAME='Kshiti'");
             ResultSet accountinfo = code.executeQuery("SELECT * FROM ACCOUNT");
@@ -296,7 +297,7 @@ public class moneymanager{
                         expense -= amount;
                         total -= amount;
 
-                        code.execute("UPDATE ACCOUNT SET ACCOUNT_BALANCE='"+accountbalance+"', DEBIT='"+expense+"', TOTAL='"+total+"' WHERE NAME='Kshiti'");
+                        code.execute("UPDATE ACCOUNT SET ACCOUNT_BALANCE='"+accountbalance+"', DEBIT='"+expense+"', TOTAL='"+total+"' WHERE NAME='Kshiti';");
 
 
                     }catch (SQLException error){
@@ -304,8 +305,8 @@ public class moneymanager{
                     }
 
                     try {
-                        code.execute("INSERT INTO DEBIT VALUES('"+amount+"','"+date+"','"+category+"','"+note+"')");
-                        code.execute("INSERT INTO STATEMENTS VALUES('"+date+"','"+amount+"','"+"'Debit'"+category+"','"+note+"')");
+                        code.execute("INSERT INTO DEBIT VALUES('"+amount+"','"+date+"','"+category+"','"+note+"');");
+                        code.execute("INSERT INTO STATEMENTS VALUES('"+date+"','"+amount+"','Debit','"+category+"','"+note+"');");
                         JOptionPane.showMessageDialog(null,"Data Added Successfully");
 
                         AmountInput.setText("");
@@ -350,8 +351,8 @@ public class moneymanager{
                     }
 
                     try {
-                        code.execute("INSERT INTO CREDIT VALUES('"+amount+"','"+date+"','"+category+"','"+note+"')");
-                        code.execute("INSERT INTO STATEMENTS VALUES('"+date+"','"+amount+"','"+"'Credit'"+category+"','"+note+"')");
+                        code.execute("INSERT INTO CREDIT VALUES('"+amount+"','"+date+"','"+category+"','"+note+"');");
+                        code.execute("INSERT INTO STATEMENTS VALUES('"+date+"','"+amount+"','Credit','"+category+"','"+note+"');");
                         JOptionPane.showMessageDialog(null,"Data Added Successfully");
 
                         AmountInput.setText("");
@@ -378,8 +379,8 @@ public class moneymanager{
                     String note = NoteInput.getText();
 
                     try {
-                        code.execute("INSERT INTO TRANSFER VALUES('"+amount+"','"+date+"','"+category+"','"+note+"')");
-                        code.execute("INSERT INTO STATEMENTS VALUES('"+date+"','"+amount+"','"+"'Transfer'"+category+"','"+note+"')");
+                        code.execute("INSERT INTO TRANSFER VALUES('"+amount+"','"+date+"','"+category+"','"+note+"');");
+                        code.execute("INSERT INTO STATEMENTS VALUES('"+date+"','"+amount+"','Transfer','"+category+"','"+note+"');");
                         JOptionPane.showMessageDialog(null,"Data Added Successfully");
 
                         AmountInput.setText("");
